@@ -18,7 +18,7 @@
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md">
         <div class="container px-4">
             <a class="brand-image" href="">
-                <img src="dist/img/logo-mtf.png" style="margin-right: 900px; margin-top: -100px;" width="100px" />
+                <img src="dist/img/logo-mtf.png" width="100px" />
             </a>
         </div>
       </nav>

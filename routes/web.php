@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,13 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('home', [UserController::class, 'home'])->name('home');
-    Route::get('detail-transaksi', [UserController::class, 'detail_transaksi'])->name('detail-transaksi');
+    Route::get('home', [TransaksiController::class, 'index'])->name('home');
+    Route::get('detail-transaksi', [TransaksiController::class, 'create'])->name('detail-transaksi');
+    Route::get('detail-transaksi/{id}', [TransaksiController::class, 'edit'])->name('detail.edit');
+    Route::get('detail-transaksi/preview/{id}', [TransaksiController::class, 'preview'])->name('detail.preview');
+    Route::post('detail-transaksi', [TransaksiController::class, 'store'])->name('detail.store');
+    Route::put('detail-transaksi/{id}', [TransaksiController::class, 'update'])->name('detail.update');
+    Route::get('mpp/{id}', [TransaksiController::class, 'print'])->name('mpp');
+    Route::get('po/{id}', [TransaksiController::class, 'po'])->name('po');
+    Route::get('po-cust/{id}', [TransaksiController::class, 'po_cust'])->name('po-cust');
 });

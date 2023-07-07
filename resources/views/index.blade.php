@@ -31,7 +31,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="dist/img/logo-mtf.png" alt="logo-mtf" height="50" width="100">
   </div>
 
   <!-- Navbar -->
@@ -112,18 +112,6 @@
                   <p>Detil Transaksi</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>MPP</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>PO</p>
-                </a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -170,44 +158,68 @@
                     INPUT
                 </a>
             </div>
-              <div class="card-body">
+              <div class="card-body table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                     <tr>
                       <th>No MPP</th>
                       <th>Nama Debitur</th>
                       <th>Alamat Debitur</th>
-                      <th>Status</th>
                       <th>Nilai Pengajuan</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td> 1 </td>
-                      <td> PT. APSL </td>
-                      <td> Jl. Raya Bogor </td>
-                      <td> <span class="badge badge-success">Disetujui</span> </td>
-                      <td> Rp. 100000000 </td>
-                      <td class="d-flex">
-                        <div >
-                            <a href="#"
-                                class="btn btn-trigger btn-icon btn-sm" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="" data-bs-original-title="Show"
-                                aria-label="Show">
-                                <i class="fas fa-eye text-sm"></i>
+                    @foreach ($transaksi as $item)
+                      <tr>
+                        <td>
+                          <span> {{$item->no_mpp}} </span>
+                        </td>
+                        <td>
+                          <span> {{$item->nama_debitur}} </span>
+                        </td>
+                        <td>
+                          <span> {{$item->alamat_debitur}} </span>
+                        </td>
+                        <td>
+                          <span> {{$item->pokok_hutang}} </span>
+                        </td>
+                        <td class="d-flex">
+                          <div >
+                            <a href="{{ route('detail.preview', $item->id) }}"
+                              class="btn btn-trigger btn-icon btn-sm" data-bs-toggle="tooltip"
+                              data-bs-placement="top" title="" data-bs-original-title="Show"
+                              aria-label="Show">
+                              <i class="fas fa-eye text-sm"></i>
                             </a>
-                        </div>
-                        <div class="ml-2">
-                            <form action="" method="POST" id="editForm">
-                                @csrf @method('PUT')
-                                <button type="submit" class="btn btn-trigger btn-icon btn-sm">
-                                    <i class="fas fa-check text-sm"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                    </tr>
+                          </div>
+                          <div class="ml-2">
+                            <a href="{{ route('detail.edit', $item->id) }}"
+                              class="btn btn-trigger btn-icon btn-sm">
+                              <i class="fas fa-pen text-sm"></i>
+                            </a>
+                          </div>
+                          <div class="ml-2" >
+                            <a href="{{ route('mpp', $item->id) }}"
+                              class="btn btn-trigger btn-icon btn-sm">
+                              <i class="fas fa-print text-sm"></i>
+                            </a>
+                          </div>
+                          <div class="ml-2" >
+                            <a href="{{ route('po', $item->id) }}"
+                              class="btn btn-trigger btn-icon btn-sm">
+                              <i class="fas fa-file text-sm"></i>
+                            </a>
+                          </div>
+                          <div class="ml-2" >
+                            <a href="{{ route('po-cust', $item->id) }}"
+                              class="btn btn-trigger btn-icon btn-sm">
+                              <i class="fas fa-file-alt text-sm"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

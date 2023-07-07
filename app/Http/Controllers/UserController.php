@@ -74,15 +74,6 @@ class UserController extends Controller
         }
     }
 
-    public function detail_transaksi()
-    {
-        if (Auth::check()) {
-            return view('detilTransaksi');
-        }
-
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
-
     public function home()
     {
         if (Auth::check()) {
